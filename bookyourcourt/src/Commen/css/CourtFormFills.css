@@ -1,0 +1,12 @@
+.image{
+    height: 8rem;
+    width: 1rem;
+}
+.breakline{
+    color:red;
+    
+}
+.courtheading{
+    color: gray;
+    text-shadow: 2px   ;
+}

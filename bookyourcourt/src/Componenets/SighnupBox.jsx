@@ -1,7 +1,5 @@
 import {
-  MDBBtn,
-
-  MDBInput,
+ MDBInput,
   MDBIcon,
 
 }
@@ -47,7 +45,7 @@ function SighnupBox({ setBoxName }) {
     
 <div className="d-flex flex-row align-items-center mb-4 ">
           <MDBIcon fas icon="user me-3" size='lg'/>
-          <MDBInput label='first Name'  type='text' className='w-100'  value={signupData.fName}
+          <MDBInput label='first Name'  type='text' className='w-100' required  value={signupData.fName}
                       onChange={(e) => {
                         setSignupData({ ...signupData, fName: e.target.value });
                       }}/>
@@ -55,34 +53,34 @@ function SighnupBox({ setBoxName }) {
 
         <div className="d-flex flex-row align-items-center mb-4 ">
           <MDBIcon fas icon="user me-3" size='lg'/>
-          <MDBInput label='Last Name'  type='text' className='w-100'  onChange={(e) => {
+          <MDBInput label='Last Name'  type='text' className='w-100' required  onChange={(e) => {
                         setSignupData({ ...signupData, lName: e.target.value });
                       }}/>
         </div>
 
         <div className="d-flex flex-row align-items-center mb-4">
           <MDBIcon fas icon="envelope me-3" size='lg'/>
-          <MDBInput label='Your Email'  type='email'  onChange={(e) => {
+          <MDBInput label='Your Email'  type='email' required  onChange={(e) => {
                     setSignupData({ ...signupData, email: e.target.value });
                   }}/>
         </div>
 
         <div className="d-flex flex-row align-items-center mb-4">
           <MDBIcon/>
-          <MDBInput label='Password' id='form3' type='password'  onChange={(e) => {
+          <MDBInput label='Password' id='form3' type='password' required onChange={(e) => {
                     setSignupData({ ...signupData, password: e.target.value });
                   }}/>
         </div>
 
         <div className="d-flex flex-row align-items-center mb-4">
           <MDBIcon />
-          <MDBInput label='Repeat your password' id='form4' type='password'  onChange={(e) => {
+          <MDBInput label='Repeat your password' id='form4' type='password' required onChange={(e) => {
                     setSignupData({ ...signupData, conPass: e.target.value });
                   }}/>
         </div>
 
       
-        <MDBBtn className='mb-4' size='lg'  onClick={handleRegister}>Signup</MDBBtn>
+        <button className="mb-4 btn btn-primary" size="lg" onClick={handleRegister}>Signup</button>
         <p className="text-center mb-5 mx-1 mx-md-4 mt-4" onClick={handleLogin}>Login</p>
 
 

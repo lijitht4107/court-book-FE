@@ -2,41 +2,45 @@ import { MDBInput, MDBIcon } from "mdb-react-ui-kit";
 import axios from "axios";
 import React, { useState } from "react";
 import { BASE_URL } from "../Constants/Const";
-
 import { toastError, toastSuccess } from "../Constants/plugins";
-
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setUserDetails} from "../Toolkit/userSlice";
 
 function LoginBox({ setBoxName }) {
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const navigate = useNavigate();
+  const [password, setPassword] = useState("")
+  const navigate = useNavigate()
+
+  const dispatch=useDispatch()
+  
 
   const handleSignUp = () => {
     setBoxName("signup");
   };
-  const handleLogin=()=>{
-    try {
-      if(email&&password){
-        axios.post(`${BASE_URL}/auth/login`,{email,password}).then((res)=>{
-          if(res.data.message==="login successfull"&&res.data.token){
-            localStorage.setItem("token",res.data.token)
-            const parsedToken=parseJwt(res.data.token)
-            localStorage.setItem("user",JSON.stringify(parsedToken))
-            navigate("/home")
-            toastSuccess("login successful")
-          }else if(res.data.message==="invalid credentials"){
-            toastError("invalid credentials")
-          }
-        })
-      }else{
-        toastError("credentials not filled")
-      }
-      
-    } catch (error) {
-      console.log(error)
+const handleLogin =()=>{
+  try {
+  
+    if(email&&password){
+      axios.post(`${BASE_URL}/auth/login`,{email,password} ).then((res)=>{
+        if(res.data.message==="login successfull"&&res.data.token){
+          localStorage.setItem("token",res.data.token)
+          const parsedToken=parseJwt(res.data.token)
+          localStorage.setItem("user",JSON.stringify(parsedToken))
+          //dispatch(setUserDetails(parsedToken))
+          dispatch(setUserDetails(parsedToken))
+          toastSuccess("login successfull")
+          navigate("/home")
+        }
+     })
+
+    }else{
+      toastError("credintials not filled")
     }
+  } catch (error) {
+    console.log(error)
   }
+}
 
 
   // parseJwt function for decoding backend user token details
@@ -55,6 +59,7 @@ function LoginBox({ setBoxName }) {
 
     return JSON.parse(jsonPayload);
   }
+
 
   return (
     <>
@@ -78,12 +83,13 @@ function LoginBox({ setBoxName }) {
         />
       </div>
 
-      <button className="mb-4" size="lg" onClick={handleLogin}>
+      <button className="mb-4 btn btn-primary" size="lg" onClick={handleLogin}>
         Login
       </button>
       <p className="text-center mb-5 mx-1 mx-md-4 mt-4" onClick={handleSignUp}>
-        Sign up
+        Sign up:
       </p>
+   
     </>
   );
 }

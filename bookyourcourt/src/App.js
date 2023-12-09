@@ -5,6 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Home from './Page/Home'
 import Login from './Page/Login';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import AddCourt from './Page/AddCourt';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/home" element={<Home/>}/>
+          <Route path="/addNewcourt" element={<AddCourt />} />
         </Routes>
       </BrowserRouter>
     </>

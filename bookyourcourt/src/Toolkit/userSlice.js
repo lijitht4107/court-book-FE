@@ -1,22 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-//state updating possion
+const INITIAL_STATE = {
+  userDetails:JSON.parse(localStorage.getItem("user"))??{} ,
+};
 
 const generalSlice = createSlice({
   name: "user",
-  initialState: {
-    userDetails: { name: "manu" },
-    userRole: 10,
-  },
+  initialState: INITIAL_STATE,
   reducers: {
     setUserDetails: (state, action) => {
-      state.userDetails = { name: "manu" };
-    },
-    setUserRole: (state, action) => {
-      state.userRole = state.userRole+1 ;
+      state.userDetails = action.payload;
     },
   },
 });
 
-export const { setUserDetails, setUserRole } = generalSlice.actions;
+export const { setUserDetails } = generalSlice.actions;
 export default generalSlice.reducer;

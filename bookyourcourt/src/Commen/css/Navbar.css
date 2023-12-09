@@ -1,0 +1,8 @@
+.nav:hover{
+    color: greenyellow;
+    text-shadow:1cm black;
+    background-color:lemonchiffon;
+}
+.profile{
+    background-color: rgb(182, 17, 17);
+}
